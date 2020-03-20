@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react'
+import { createGlobalStyle } from 'styled-components'
+
+import Header from './Components/Header'
+import Search from './Components/Search'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	  <Fragment>
+		<GlobalStyle/>
+		<Header></Header>
+		<Search></Search>
+	  </Fragment>
+  )
 }
+
+const GlobalStyle = createGlobalStyle`
+	html {
+		height: 100%;
+	}
+	body {
+		color: #000;
+		height: 100%;
+		margin: 0;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background: rgb(255,187,4);
+		background: linear-gradient(0deg, rgba(255,187,4,1) 0%, rgba(255,127,2,1) 100%);
+	}
+`
 
 export default App;
