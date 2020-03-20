@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 
 import Header from './Components/Header'
 import Search from './Components/Search'
+import Capitals from './Components/Capitals'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
 		<Header></Header>
 		<Search></Search>
 		<Divisor></Divisor>
+		<Capitals></Capitals>
 	  </Fragment>
   )
 }
@@ -20,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
 		height: 100%;
 	}
 	body {
+        font-family: arial;
 		color: #000;
 		height: 100%;
 		margin: 0;
@@ -31,7 +34,7 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const Divisor = styled.hr`
-	width: 50%;
+	width: 500px;
 	margin-top: 50px;
 	border: 0;
 	height: 1px;
