@@ -7,7 +7,7 @@ const Capitals = () => {
     const [data, setData] = useState<any[]>([])
 
     useEffect(() => {
-        const fetchData = async () => {
+        (async function () {
             try {
                 const joaoPessoa = await http.get('Joao Pessoa')
                 const rioDeJaneiro = await http.get('Rio de Janeiro')
@@ -20,20 +20,24 @@ const Capitals = () => {
             } catch (e) {
                 console.log(e)
             }
-        }
-        
-        fetchData()
+        })()
     }, [])
 
     const renderData = () => {
         if ( data.length ) {
             return data
                 .map(city => {
-                    return <li key={city.location.name}>{city.location.name}</li>
+                    return (
+                    <li key={city.location.name}>
+                        { city.current.temperature }&deg; &nbsp;
+                        { city.current.feelslike }&deg; &nbsp;
+                        { city.location.name }
+                    </li>
+                    )
                 })
         }
 
-        return <p>Loading...</p>
+        return <span>Loading...</span>
     }
 
     return (
@@ -42,12 +46,17 @@ const Capitals = () => {
                 <h1>Capitals</h1>
                 <div className="capitals-list">
                     <div>
-                        <p>Min Max</p>
+                        <p>TEM SEN</p>
                         <ul>
-                            {renderData()} 
+                            { renderData()}  
                         </ul>
                     </div>
-                    <div><p>Min Max</p></div>
+                    <div>
+                        <p>TEM SEN</p>
+                        <ul>
+                            { renderData() }  
+                        </ul>
+                    </div>
                 </div>
             </div>
         </WrapperCapitals>
@@ -59,6 +68,24 @@ const WrapperCapitals = styled.section`
     justify-content: center;
     align-items: center;
     padding: 0 300px;
+
+    ul {
+        padding: 0;
+
+        li {
+            list-style-type: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        li:not(:first-child) {
+            margin: 30px 0 0 0;
+        }
+    }
+
+    p {
+        font-size: 11px;
+    }
 
     div {
         min-width: 50%;
@@ -75,6 +102,7 @@ const WrapperCapitals = styled.section`
     .capitals-list {
         display: flex;
         width: 100%;
+        line-height: 0;
         
         > div {
             flex: 1;

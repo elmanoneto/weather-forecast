@@ -6,7 +6,7 @@ interface IFormProps {
 }
 
 const Search = (props: IFormProps) => {
-    const [ search, setSearch ] = useState('')
+    const [ search, setSearch ] = useState<string>('')
 
     return (
         <SearchInput>
