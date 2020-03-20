@@ -1,35 +1,24 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 interface IFormProps {
-    search: string
+    search?: string
 }
 
-class Search extends Component<{}, IFormProps> {
-    constructor(props: IFormProps) {
-        super(props)
+const Search = (props: IFormProps) => {
+    
+    const [ search, setSearch ] = useState('')
 
-        this.state = {
-            search: ''
-        }
-    }
-
-    setSearch(search: string) {
-        this.setState({ search })
-    }
-
-    render() {
-        return (
-            <SearchInput>
-                <input 
-                    type="text" 
-                    placeholder="Insert the city name here"
-                    value={this.state.search}
-                    onChange={ (e) => { this.setSearch(e.target.value) }}>
-                </input>
-            </SearchInput>
-        )
-    }
+    return (
+        <SearchInput>
+            <input 
+                type="text" 
+                value={ search }
+                placeholder="Insert the city name here"
+                onChange={ (e) => { setSearch(e.target.value) }}>
+            </input>
+        </SearchInput>
+    )
 }
 
 const SearchInput = styled.section`
