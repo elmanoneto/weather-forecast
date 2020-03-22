@@ -9,10 +9,10 @@ const Capitals = () => {
     useEffect(() => {
         (async function () {
             try {
+                const recife = await http.get('Recife')
+                const saoPaulo = await http.get('Sao Paulo')
                 const joaoPessoa = await http.get('Joao Pessoa')
                 const rioDeJaneiro = await http.get('Rio de Janeiro')
-                const saoPaulo = await http.get('Sao Paulo')
-                const recife = await http.get('Recife')
 
                 const result = [joaoPessoa.data, rioDeJaneiro.data, saoPaulo.data, recife.data]
 
@@ -24,15 +24,17 @@ const Capitals = () => {
     }, [])
 
     const renderData = () => {
-        if ( data.length ) {
+        console.log(data)
+        if ( data ) {
             return data
                 .map(city => {
                     return (
-                    <li key={city.location.name}>
+                     city.location ?
+                     <li key={city.location.name}>
                         { city.current.temperature }&deg; &nbsp;
                         { city.current.feelslike }&deg; &nbsp;
                         { city.location.name }
-                    </li>
+                    </li> : 'Error!'
                     )
                 })
         }
@@ -45,14 +47,14 @@ const Capitals = () => {
             <div>
                 <h1>Capitals</h1>
                 <div className="capitals-list">
-                    <div>
-                        <p>TEM SEN</p>
+                    <div> 
+                        <p>MIN &nbsp; MAX</p>
                         <ul>
                             { renderData()}  
                         </ul>
                     </div>
                     <div>
-                        <p>TEM SEN</p>
+                        <p>MIN &nbsp; MAX</p>
                         <ul>
                             { renderData() }  
                         </ul>
